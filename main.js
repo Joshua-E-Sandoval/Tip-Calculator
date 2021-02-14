@@ -74,7 +74,7 @@ function addPersonButton(){
 function Update(){
 	peoples.innerHTML = '';
 	for(x of people){
-		peoples.innerHTML = peoples.innerHTML + Person.GetLabel(x) + "--- Hours: " + Person.GetHours(x) + " -- Tips: " + Person.GetTips(x) + "<br>";
+		peoples.innerHTML = peoples.innerHTML + Person.GetLabel(x) + "--- Hours: " + Person.GetHours(x) + " -- Tips: " + makeToInt(Person.GetTips(x)) + "<br>";
 	}
 	console.log(peoples.innerHTML.toString());
 }
@@ -90,7 +90,7 @@ function CalculateTips(){
 	let check = 0;
 	if(people.length != 0){
 		for(x of people){
-			totalHours = parseInt(totalHours, 10) + parseInt( Person.GetHours(x) , 10);
+			totalHours = parseFloat(totalHours, 10) + parseFloat( Person.GetHours(x) , 10);
 		}
 		ratio = tips / totalHours;
 		console.log(totalHours, ratio);
@@ -102,4 +102,9 @@ function CalculateTips(){
 		let aCheck = document.getElementById("check");
 		aCheck.innerHTML = "Total Hours = " + totalHours.toString() + "<br>Tip Ratio " +  ratio.toString() + "<br> Tips added by Employee " + check.toString();
 	}
+}
+
+function makeToInt(y){
+	let ret = y.toFixed(0);
+	return ret;
 }
